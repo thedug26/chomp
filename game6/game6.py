@@ -19,7 +19,7 @@ running=True
 background=screen.copy()
 draw_background(background)
 
-for _ in range(10 ):
+for _ in range(5):
     fishes.add(Fish(random.randint(SCREEN_WIDTH,SCREEN_WIDTH*1.5),random.randint(TILE_SIZE,SCREEN_HEIGHT-2*TILE_SIZE)))
 
 player=Player(SCREEN_WIDTH/2,SCREEN_HEIGHT/2)
