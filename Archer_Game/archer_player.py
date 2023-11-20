@@ -2,11 +2,12 @@ import pygame
 from archconst import *
 class Player(pygame.sprite.Sprite):
     def __init__(self, x, y):
-        #TODO flip the fish if going the other way
         super().__init__()
-        self.forward_image=pygame.image.load("../assets/sprites/soldier_stand.png")
-        self.reverse_image=pygame.transform.flip(self.forward_image,True,False)
-        self.image = self.forward_image
+        self.image0=pygame.image.load("../Archer_Game/assets/Archer_Sprites/soldier_stand.png")
+        #self.reverse_image=pygame.transform.flip(self.forward_image,True,False)
+        self.image = self.image0
+        self.image1=pygame.image.load("../Archer_Game/assets/Archer_Sprites/adventurer_stand.png")
+        self.image2 = pygame.transform.flip(self.image1, True, False)
         self.rect = self.image.get_rect()
         self.x = x
         self.y = y
@@ -23,7 +24,7 @@ class Player(pygame.sprite.Sprite):
         self.image=self.reverse_image
     def move_right(self):
         self.x_speed=PLAYER_SPEED
-        self.image=self.forward_image
+        #self.image=self.forward_image
     def stop(self):
         self.x_speed = 0
         self.y_speed = 0
@@ -32,19 +33,25 @@ class Player(pygame.sprite.Sprite):
     def update(self):
         #TODO:Make sure orange fish stays on screen
         self.x+=self.x_speed
-        self.y+=self.y_speed
+        #self.y+=self.y_speed
 
         if self.x>SCREEN_WIDTH-TILE_SIZE:
             self.x=SCREEN_WIDTH-TILE_SIZE
         if self.x<0:
             self.x=0
-        if self.y>SCREEN_HEIGHT-2*TILE_SIZE:
-            self.y=SCREEN_HEIGHT-2*TILE_SIZE
-        if self.y<0:
-            self.y=0
+        #if self.y>SCREEN_HEIGHT-2*TILE_SIZE:
+        #    self.y=SCREEN_HEIGHT-2*TILE_SIZE
+        #if self.y<0:
+       #     self.y=0
         self.rect.x=self.x
-        self.rect.y=self.y
+        #self.rect.y=self.y
 
 
     def draw(self,surf):
-        surf.blit(self.image,self.rect)
+        surf.blit(self.image0,self.rect)
+    def draw2(self,surf):
+        surf.blit(self.image2,self.rect)
+    def pos_update(self,time):
+        if time>3000:
+            self.x+=TILE_SIZE-2*TILE_SIZE
+        #self.x = 100
