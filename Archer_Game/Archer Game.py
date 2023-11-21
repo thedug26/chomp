@@ -24,7 +24,7 @@ current_time=0
 button_press_time=0
 
 # Sprite groups
-all_sprites = pygame.sprite.Group()
+sprites = pygame.sprite.Group()
 projectiles = pygame.sprite.Group()
 
 # Create cannon
@@ -40,7 +40,7 @@ soldier = Player(player1x, SCREEN_HEIGHT - TILE_SIZE * 5 -5)
 #print(soldier.rect.width, soldier.rect.height)
 adventurer = Player(player2x, SCREEN_HEIGHT - TILE_SIZE * 5 -5)
 
-all_sprites.add(soldier)
+sprites.add(soldier)
 #soldier_shoot=Bullet(soldier.self.x,soldier.self.y)
 while running:
     for event in pygame.event.get():
@@ -56,8 +56,8 @@ while running:
             if event.key == pygame.K_SPACE:
                 # Shoot a projectile when the spacebar is pressed
                 angle = 45  # Initial launch angle
-                projectile = Projectile(player1x, SCREEN_HEIGHT - 2*TILE_SIZE, angle)
-                all_sprites.add(projectile)
+                projectile = Projectile(soldier.rect.centerx, soldier.rect.centery, angle)
+                sprites.add(projectile)
                 projectiles.add(projectile)
 
         current_time = pygame.time.get_ticks()
@@ -66,11 +66,17 @@ while running:
     screen.blit(background, (0, 0))
 
 
-    soldier.draw(screen)
+
+
+    #draw sprites
+
+
+    #soldier.draw(screen)
     adventurer.draw2(screen)
     soldier.update()
     adventurer.update()
-    all_sprites.update()
+    sprites.update()
+    sprites.draw(screen)
 
 
     #text = score_font.render(f'{score}', True, (255, 0, 0))
