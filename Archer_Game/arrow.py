@@ -1,27 +1,27 @@
 import pygame
 import sys
 import math
-import backarcher
-import archconst
+from backarcher import *
+from archconst import *
 
 # Initialize Pygame
 pygame.init()
 
 # Set up display
-
+screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 #screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("Ballistic Projectiles with Angles and Gravity in Pygame")
 
 # Colors
 #white = (255, 255, 255)
-#black = (0, 0, 0)
+black = (0, 0, 0)
 #red = (255, 0, 0)
 
 # Projectile class
 class Projectile(pygame.sprite.Sprite):
     def __init__(self, x, y, angle):
         super().__init__()
-        self.image = pygame.image.load(../Archer_Game/assets/Archer_Sprites/arrow.png)
+        self.image = pygame.image.load("../Archer_Game/assets/Archer_Sprites/arrow.png")
         #self.image.fill(red)
         self.rect = self.image.get_rect()
         self.rect.center = (x, y)
@@ -34,7 +34,7 @@ class Projectile(pygame.sprite.Sprite):
         self.speed += gravity
 
         # Check if the projectile is out of the screen
-        if self.rect.y > height or self.rect.x < 0 or self.rect.x > width:
+        if self.rect.y > SCREEN_HEIGHT or self.rect.x < 0 or self.rect.x > SCREEN_WIDTH:
             self.kill()
 
 
@@ -42,10 +42,10 @@ class Projectile(pygame.sprite.Sprite):
 class Cannon(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
-        self.image = pygame.Surface((50, 20))
-        self.image.fill(white)
+        self.image = pygame.image.load("../Archer_Game/assets/Archer_Sprites/adventurer_hold1.png")
+        #self.image.fill(white)
         self.rect = self.image.get_rect()
-        self.rect.center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT - 30)
+        self.rect.center = (player1x, SCREEN_HEIGHT - 2*TILE_SIZE)
 
 # Gravity
 gravity = 0.1
@@ -77,8 +77,8 @@ while True:
     all_sprites.update()
 
     # Draw everything
-    #screen.fill(black)
-    #all_sprites.draw(screen)
+    screen.fill(black)
+    all_sprites.draw(screen)
 
     pygame.display.flip()
     clock.tick(30)
