@@ -9,6 +9,8 @@ class Player(pygame.sprite.Sprite):
         self.image1=pygame.image.load("../Archer_Game/assets/Archer_Sprites/adventurer_stand.png")
         self.image2 = pygame.transform.flip(self.image1, True, False)
         self.rect = self.image.get_rect()
+        self.rect1=self.image2.get_rect()
+
         self.x = x
         self.y = y
         self.rect.center = (x, y)
@@ -44,14 +46,18 @@ class Player(pygame.sprite.Sprite):
         #if self.y<0:
        #     self.y=0
         self.rect.x=self.x
+
         #self.rect.y=self.y
 
 
     def draw(self,surf):
-        surf.blit(self.image0,self.rect)
+        surf.blit(self.image,self.rect)
     def draw2(self,surf):
         surf.blit(self.image2,self.rect)
     def pos_update(self,time):
         if time>3000:
             self.x+=TILE_SIZE-2*TILE_SIZE
+    def pos_update1(self,time):
+        if time>3000:
+            self.x-=TILE_SIZE-2*TILE_SIZE
         #self.x = 100
