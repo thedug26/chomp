@@ -62,6 +62,8 @@ while running:
         #    adventurer.pos_update1(current_time)
             #soldier.draw(screen)
             #print("click")
+
+        #shoots an arrow using spacebar
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
                 # Shoot a projectile when the spacebar is pressed
