@@ -46,7 +46,7 @@ class Cannon(pygame.sprite.Sprite):
         self.rect.center = (width // 2, height - 30)
 
 # Gravity
-gravity = 0.1
+gravity = 0.01
 
 # Sprite groups
 all_sprites = pygame.sprite.Group()

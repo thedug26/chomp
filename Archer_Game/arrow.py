@@ -13,10 +13,10 @@ class Projectile(pygame.sprite.Sprite):
         self.angle = math.radians(angle)
         self.speed = 10
 
-    def update1(self,gravity=0.1):
+    def update(self):
         self.rect.x += self.speed * math.cos(self.angle)
         self.rect.y -= self.speed * math.sin(self.angle)
-        self.speed += gravity
+        self.speed += 0.01
 
         # Check if the projectile is out of the screen
         if self.rect.y > SCREEN_HEIGHT or self.rect.x < 0 or self.rect.x > SCREEN_WIDTH:
